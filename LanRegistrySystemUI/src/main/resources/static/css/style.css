@@ -486,8 +486,8 @@ a:focus {
 }
 
 .layout_padding {
-    padding-top: 80px;
-    padding-bottom: 100px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .layout_padding_2 {
@@ -1143,9 +1143,9 @@ section .social_icons {
 }
 
 .logo img {
-    width: 200px;
+    width: 150px;
     margin: 0;
-    height: 200px;
+    height: 150px;
 }
 
 

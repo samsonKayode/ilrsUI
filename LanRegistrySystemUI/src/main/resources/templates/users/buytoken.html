@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+	<div th:replace="header :: myheader"></div>
+   </head>
+   <body id="default_theme" class="about">
+      <!-- header -->
+      <header class=" header_style1">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-9 col-lg-10">
+                  <div class="logo"><a href="index.html"><img th:src="@{/images/imo_state_logo.jpeg}" alt="#" /></a></div>
+
+               </div>
+               <div class="col-md-3 col-lg-2">
+                  <div class="right_bt"><a class="bt_main" th:href="@{/lrs/home}">Return to Home</a> </div>
+               </div>
+            </div>
+         </div>
+      </header>
+      <hr>
+   
+
+      <section class="layout_padding padding_top_0">
+         <div class="container ">
+            <h4> The Cost of purchasing a token is N5,000</h4>
+            
+
+     
+     <ul class="btn-warning">
+      <li> <i class="fa fa-check"></i>Token is valid for thirty (30) days.</li>
+      <li> <i class="fa fa-check"></i>Token is valid for three (3) searches</li>
+      <li> <i class="fa fa-check"></i>Token is only valid for the property titled entered</li>
+   </ul>
+
+
+  </div>
+</section>
+
+      <!-- end header -->
+      <!-- section -->
+      <section class="layout_padding padding_top_0">
+         <div class="container">
+            <div class="row margin_bottom_30">
+               <!-- featured cont -->
+               <div class="col-md-8 cont_theme_blog">
+                  <div class="full">
+                     <h3>Purchase access token to perfom title search</h3>
+
+                     <form action="#" th:action="@{/lrs/makepayment}" th:object="${payment}" method="POST">
+
+                        <i class="fa fa-envelope"></i><label> <font color="black"> Enter Email Address</font></label>
+
+                        <input type="text"   class="form-control mb-4 col-8 " 
+                        placeholder="">
+
+                        <i class="fa fa-phone"></i><label><font color="black"> Enter Phone Number</font></label>
+
+                        <input type="text" class="form-control mb-4 col-8" 
+                        placeholder="">
+
+                        <i class="fa fa-info-circle"></i><label><font color="black"> Property Title</font></label>
+
+                        <input type="text"   class="form-control mb-4 col-8" 
+                        placeholder="Enter property title">
+
+
+
+                           <button type="submit" class="btn btn-info col-8"><i class="fa fa-check-circle"></i> Make Payment</button>
+
+                     </form>
+                     
+
+
+                  </div>
+               </div>
+               <!-- end featured cont -->
+               <!-- featured image -->
+               <div class="col-md-4 wow fadeInRight" data-wow-delay="1.5" data-wow-duration="3s">
+                  <div class="full">
+                     <div class="center"><img th:src="@{/images/payment.png}"  alt="#" /></div>
+                  </div>
+               </div>
+               <!-- end featured image -->
+            </div>
+            </div>
+            </section>
+            
+            <!-- footer -->
+      <div th:replace="header :: myfooter"></div>
+
+   </body>
+</html>

@@ -1,5 +1,5 @@
-<!Doctype html>
-<html xmlns:th="http://www.thymeleaf.org">
+
+<html>
 	<body>
 		<div th:fragment="myheader">
 		<!-- basic -->
@@ -14,17 +14,17 @@
       <meta name="description" content="">
       <meta name="author" content="">
       <!-- site icons -->
-      <link rel="icon" th:href="@{/images/fevicon/fevicon.png}" type="image/png" />
+      <link rel="icon" href="/images/fevicon/fevicon.png" type="image/png" />
       <!-- bootstrap css -->
-      <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
       <!-- site css -->
-      <link rel="stylesheet" th:href="@{/css/style.css}" />
+      <link rel="stylesheet" href="/css/style.css" />
       <!-- responsive css -->
-      <link rel="stylesheet" th:href="@{/css/responsive.css}" />
+      <link rel="stylesheet" href="/css/responsive.css" />
       <!-- colors css -->
-      <link rel="stylesheet" th:href="@{/css/colors.css}" />
+      <link rel="stylesheet" href="/css/colors.css" />
       <!-- wow animation css -->
-      <link rel="stylesheet" th:href="@{/css/animate.css}" />
+      <link rel="stylesheet" href="/css/animate.css" />
       <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -36,7 +36,7 @@
 		<div class="container">
             <div class="row">
                <div class="col-md-9 col-lg-10">
-                  <div class="logo"><a href="index.html"><img th:src="@{/images/imo_state_logo.jpeg}" alt="#" /></a></div>
+                  <div class="logo"><a href="index.html"><img src="/images/imo_state_logo.jpeg" alt="#" /></a></div>
                   <div class="main_menu float-right">
                      <div class="menu">
                         <!--
@@ -72,14 +72,19 @@
       </footer>
       <!-- end footer -->
       <!--=========== js section ===========-->
-      <!-- jQuery (necessary for Bootstrap's JavaScript) -->
+      <!-- jQuery (necessary for Bootstrap's JavaScript) 
       <script th:src="@{js/jquery.min.js}"></script>
       <script th:src="@{js/popper.min.js}"></script>
       <script th:src="@{js/bootstrap.min.js}"></script>
-      <!-- wow animation -->
       <script th:src="@{js/wow.js}"></script>
-      <!-- custom js -->
       <script th:src="@{js/custom.js}"></script>
+      -->
+      
+      <script src="/js/jquery.min.js"></script>
+      <script src="/js/popper.min.js"></script>
+      <script src="/js/bootstrap.min.js"></script>
+      <script src="/js/wow.js"></script>
+      <script src="/js/custom.js"></script>
 		
 		</div>
 
