@@ -13,7 +13,7 @@
 
                </div>
                <div class="col-md-3 col-lg-2">
-                  <div class="right_bt"><a class="bt_main" th:href="@{/lrs/home}">Return to Home</a> </div>
+                  <div class="right_bt"><a class="bt_main" th:href="@{/lrs/home}"><i class="fa fa-home"></i> Return to Home</a> </div>
                </div>
             </div>
          </div>
@@ -27,7 +27,7 @@
             
 
      
-     <ul class="btn-warning">
+     <ul class="btn-info">
       <li> <i class="fa fa-check"></i>Token is valid for thirty (30) days.</li>
       <li> <i class="fa fa-check"></i>Token is valid for three (3) searches</li>
       <li> <i class="fa fa-check"></i>Token is only valid for the property titled entered</li>
@@ -47,24 +47,24 @@
                   <div class="full">
                      <h3>Purchase access token to perfom title search</h3>
 
-                     <form action="#" th:action="@{/lrs/makepayment}" th:object="${payment}" method="POST">
+                     <form th:action="@{/lrs/makepayment}" th:object="${payment}" method="POST">
 
-                        <i class="fa fa-envelope"></i><label> <font color="black"> Enter Email Address</font></label>
+                        <i class="fa fa-envelope"></i><label> <font color="black"> Enter Email Address:</font></label>
 
-                        <input type="text"   class="form-control mb-4 col-8 " 
+						<font color="red" size=2px> <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span></font>
+                        <input type="text" th:field="*{email}"  class="form-control mb-4 col-8 " 
+                        placeholder="abc@xyz.com">
+
+                        <i class="fa fa-phone"></i><label><font color="black"> Enter Phone Number:</font></label>
+                        
+                        <font color="red" size=2px> <span th:if="${#fields.hasErrors('metadata.phone')}" th:errors="*{metadata.phone}"></span></font>
+                        <input type="text" th:field="*{metadata.phone}" class="form-control mb-4 col-8 " 
                         placeholder="">
 
-                        <i class="fa fa-phone"></i><label><font color="black"> Enter Phone Number</font></label>
-
-                        <input type="text" class="form-control mb-4 col-8" 
-                        placeholder="">
-
-                        <i class="fa fa-info-circle"></i><label><font color="black"> Property Title</font></label>
-
-                        <input type="text"   class="form-control mb-4 col-8" 
+                        <i class="fa fa-info-circle"></i><label><font color="black"> Property Title Number:</font></label>
+                        <font color="red" size=2px><span th:if="${#fields.hasErrors('metadata.title_id')}" th:errors="*{metadata.title_id}"></span></font>
+                        <input type="text" th:field="*{metadata.title_id}" class="form-control mb-4 col-8 " 
                         placeholder="Enter property title">
-
-
 
                            <button type="submit" class="btn btn-info col-8"><i class="fa fa-check-circle"></i> Make Payment</button>
 
