@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+	<div th:replace="header :: myheader"></div>
+   </head>
+   
+      <body id="default_theme" class="home_page1">
+      <!-- header -->
+      <header class=" header_style1">
+         <div th:replace="header :: subheader"></div>
+      </header>
+      
+      <hr>
+      <center>
+		<section class="layout_padding padding_top_0">
+		   <div class="container">
+		<div class="btn-custom_error mb-6 col-8 ">
+		   <h5> Error confirming transaction </h5>
+		
+		   <p> Please check your email for a payment receipt.</p>
+		   <p> If payment receipt is found, use it as you reference number and property title number to perform search <a href=""> Here </a></p>
+		   <p> If you find a payment receipt but still cannot login, contact administrator <a href="">Here</a></p>
+		</div>
+		
+		<a  class="btn btn-warning col-8" th:href="@{/lrs/buytoken}"><i class="fa fa-repeat"></i> Try Again</a>
+		
+</div>
+</section>
+</center>
+      
+      </body>
+   
+   </html>

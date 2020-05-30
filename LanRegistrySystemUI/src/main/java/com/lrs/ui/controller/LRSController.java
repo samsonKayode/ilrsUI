@@ -17,14 +17,15 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.lrs.ui.paystack.InitializeTransactionRequest;
 import com.lrs.ui.paystack.InitializeTransactionResponse;
-import com.lrs.ui.paystack.MetaData;
 import com.lrs.ui.paystack.RandomReference;
 
 @Controller
@@ -43,6 +44,12 @@ public class LRSController {
 	@Value("${paystack.testkey}")
 	private String secretKey;
 	
+	@Value("${mybase.URL}")
+	private String myBaseURL;
+	
+	//@Value("{transaction_message}")
+	//private String transaction_message;
+	
 	InitializeTransactionResponse initializeTransactionResponse = null;
 	
 	private static final int STATUS_CODE_OK = 200;
@@ -57,36 +64,40 @@ public class LRSController {
 		return "users/homepage";
 	}
 	
-	@RequestMapping("/buytoken")
+	@ModelAttribute("transactionRequest")
+    public InitializeTransactionRequest transactionRequest() {
+        return new InitializeTransactionRequest();
+    }
+	
+	@RequestMapping(value="/buytoken", method = RequestMethod.GET)
 	public String buyToken(Model theModel) {
-
-		InitializeTransactionRequest trequest = new InitializeTransactionRequest();
 		
-		theModel.addAttribute("payment", trequest);
+		theModel.addAttribute("transaction_message","transaction_message");
 		
 		return "users/buytoken";
 	}
 	
-	@PostMapping("/makepayment")
-	public String moveToPayStack(@Valid @ModelAttribute ("payment") InitializeTransactionRequest transactionRequest, BindingResult theBind, Model theModel) {
-	//public String moveToPayStack(@Valid InitializeTransactionRequest transactionRequest, BindingResult theBind, Model theModel) {
-		
-		//MetaData meta = transactionRequest.getMetadata();
-		
-		//theModel.addAttribute("phone", meta.getPhone());
+	@RequestMapping(value = "/makepayment", method = RequestMethod.POST)
+	public String moveToPayStack(@Valid @ModelAttribute ("transactionRequest") InitializeTransactionRequest transactionRequest, 
+			BindingResult theBind, RedirectAttributes redirectAttributes) {
 		
 		String authorization_url=null;
 		
-		if(theBind.hasErrors()) {
+		//theModel.addAttribute("transaction_message",transaction_message);
+		
+		if(theBind.hasErrors() ) {
 			
-			System.out.println("I GOT HERE BINDING ERROR");
+			System.out.println("BIND 1 ERRORS====>"+theBind.getAllErrors());
 			
-			 return "users/buytoken";
+			//model.addAttribute("payment",transactionRequest);
+			redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.transactionRequest", theBind);
+			redirectAttributes.addFlashAttribute("transactionRequest", transactionRequest);
+			 //return "users/buytoken";
+			
+			return "redirect:/lrs/buytoken";
 			
 		}else {
-		
-		
-		try {
+			try {
 			Gson gson = new Gson();
 			
 			String refNo=randomReference.getAlphaNumericString(20);
@@ -95,7 +106,8 @@ public class LRSController {
 			
 			transactionRequest.setReference(refNo);
 			
-			transactionRequest.setCallback_url(callbackURL+refNo+"/"+transactionRequest.getEmail()+"/"+transactionRequest.getMetadata().getTitle_id());
+			transactionRequest.setCallback_url(callbackURL+refNo+"/"+transactionRequest.getEmail()
+			+"/"+transactionRequest.getMetadata().getTitle_id());
 
             StringEntity postingString = new StringEntity(gson.toJson(transactionRequest));
             HttpClient client = HttpClientBuilder.create().build();
@@ -106,16 +118,6 @@ public class LRSController {
             
             StringBuilder result = new StringBuilder();
             HttpResponse response = client.execute(post);
-            
-            
-            
-            System.out.println("EMAIL===>>>"+transactionRequest.getEmail());
-            System.out.println("CALLBACK===>>>"+transactionRequest.getCallback_url());
-            System.out.println("REFRENCE NUMBER===>>>"+transactionRequest.getReference());
-            System.out.println("AMOUNT===>>>"+transactionRequest.getAmount());
-            System.out.println("TITLE ID===>>>"+transactionRequest.getMetadata().getTitle_id());
-            
-            System.out.println("PHONE NO===>>>"+transactionRequest.getMetadata().getPhone());
             
             if (response.getStatusLine().getStatusCode() == STATUS_CODE_OK) {
                 BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
@@ -138,12 +140,26 @@ public class LRSController {
             
         } catch (Exception ex) {
             ex.printStackTrace();
-            //throw new Exception("Failure initializaing paystack transaction");
         }
 
 		
 	}
 		return "redirect:"+authorization_url;
+	}
+	
+	
+	//show Error page..
+	
+	@RequestMapping(value="/failed", method = RequestMethod.GET)
+	public String errorpage() {
+		
+		return "users/paymenterror";
+	}
+	
+	@RequestMapping(value="/success", method = RequestMethod.GET)
+	public String oktransaction() {
+		
+		return "users/paymentsuccess";
 	}
 
 }

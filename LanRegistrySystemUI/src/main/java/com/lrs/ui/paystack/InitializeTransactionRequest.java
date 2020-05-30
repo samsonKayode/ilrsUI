@@ -2,6 +2,7 @@ package com.lrs.ui.paystack;
 
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.validation.ValidationException;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Email;
@@ -78,7 +79,8 @@ public class InitializeTransactionRequest {
     /**
      * Extra information to be saved with this transaction
      */
-  
+    @NotNull(message = "Cannot be empty")
+    @Valid
     private MetaData metadata;
 
     /**
