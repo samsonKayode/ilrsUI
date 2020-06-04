@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+	<div th:replace="header :: myheader"></div>
+   </head>
+   
+   <body id="default_theme" class="about">
+      <!-- header -->
+      <header class=" header_style1">
+         <div th:replace="header :: subheader"></div>
+      </header>
+      
+      <section class="layout_padding padding_top_0 center">
+         <div class="container">
+            <div class="row margin_bottom_30 center">
+               <!-- featured cont -->
+               <div class="col-sm-6 col-md-6 cont_theme_blog1 active_price table_price">
+                  <div class="full">
+                     <h3 style="text-align: center;">SEARCH LAND REGISTRY SYSTEM</h3>
+
+                     <form th:action="@{/lrs/search/verify}" th:object="${searchModel}" method="POST">
+                     
+                     <div th:if="${messageID >= 1}">
+                     
+                     <div style="text-align: center; background: #DC143C;  margin-top: 5px; margin-bottom:20px">
+                           <h6>
+                           
+                           <font color="white"><span th:text="${messageText}"></span></font>
+                           
+                           </h6>
+                        </div>
+                        </div>
+                        <br/>
+
+                        <i class="fa fa-info-circle"></i><label><font color="black"> Property Title:</font></label>
+
+						<font color="red" size=2px> <span th:if="${#fields.hasErrors('title_id')}" th:errors="*{title_id}"></span></font>
+                        <input type="text" th:field="*{title_id}" class="form-control mb-4 col-12" placeholder="Enter property title">
+
+                        <i class="fa fa-phone"></i><label><font color="black"> Token / Transaction Reference No:</font></label>
+
+						<font color="red" size=2px> <span th:if="${#fields.hasErrors('access_code')}" th:errors="*{access_code}"></span></font>
+                        <input type="text" th:field="*{access_code}" class="form-control mb-4 col-12" placeholder="Enter token">
+
+
+
+                           <button type="submit" class="btn btn-info col-12"><i class="fa fa-search"></i> Search Result </button>
+
+                     </form>
+                     
+                     </div>
+                     </div>
+                     </div>
+                     </div>
+                     </section>
+                     
+                     <div th:replace="header :: myfooter"></div>
+                     
+      
+      
+      </body>
+      </html>
+      

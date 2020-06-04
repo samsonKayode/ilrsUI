@@ -1134,6 +1134,15 @@ div.left_head ul li i {
     width: 200px;
 }
 
+.right_bt_new {
+    float: left;
+    margin-top: 20px;
+    padding: 2px;
+    
+}
+
+
+
 /** social icon **/
 
 .social_icons {
@@ -1458,6 +1467,29 @@ section.cross_layout {
     margin-top: 0px;
 }
 
+.cont_theme_blog1 h3 {
+    text-transform: uppercase;
+    background: linear-gradient(to right, #1e72bc 0%, #30CFD0 100%);
+    background: -webkit-linear-gradient(to right, #1e72bc 0%, #30CFD0 100%);
+    background: -moz-linear-gradient(to right, #1e72bc 0%, #30CFD0 100%);
+    background: -ms-linear-gradient(to right, #1e72bc 0%, #30CFD0 100%);
+    background: -o-linear-gradient(to right, #1e72bc 0%, #30CFD0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: none;
+    font-size: 35px;
+    line-height: 42px;
+    font-weight: 500;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.cont_theme_blog1 p {
+    font-size: 17px;
+    line-height: normal;
+    margin-top: 0px;
+}
+
 /*------------------------------------------------------------------
         8. price table
 -------------------------------------------------------------------*/
@@ -1478,6 +1510,10 @@ section.cross_layout {
 
 .active_price .table_price_head {
     background: #1e72bc;
+}
+
+.active_price_loan .table_price_head {
+    background: darkred;
 }
 
 .table_price_head h5 {

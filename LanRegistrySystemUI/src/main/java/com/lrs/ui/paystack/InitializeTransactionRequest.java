@@ -183,7 +183,6 @@ public class InitializeTransactionRequest {
     }
 
 
-
     public Integer getTransaction_charge() {
         return transaction_charge;
     }
