@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+	<div th:replace="header :: myheader"></div>
+   </head>
+   
+   <body id="default_theme" class="about">
+      <!-- header -->
+      <header class=" header_style1">
+         <div th:replace="header :: subheader"></div>
+      </header>
+      
+      <section class="layout_padding">
+         <div class="container">
+            <div class="row">
+               <div class="full">
+                  <div class="row">
+                     <div class="col-sm-12">
+                        <div class="full text_align_center">
+                           <div class="heading_main center_head_border heading_style_1" style="margin-top:20px;">
+                              <h3>Search Result For <span th:text="${landEntity.title_id}"></span></h3>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-sm-12">
+                  <div class="full" style="margin-top:2px;">
+                     <div class="row">
+                        <div class="col-sm-12 col-md-4">
+                           <div class="active_price table_price text_align_center">
+                              <div class="table_price_head">
+                                 <h5><i class="fa fa-map"></i> Land Details</h5>
+                              </div>
+                              <div class="table_price_cont">
+                                 <div class="table_price_cont_bottm text_align_left">
+                                    <ul>
+                                       <li><b>Title Number:</b></li>
+                                       <li><span th:text="${landEntity.title_id}"></span></li>
+                                       <li><b>Location:</b></li>
+                                       <li><span th:text="${landEntity.location}"></span></li>
+                                       <li><b>Size:</b></li>
+                                       <li><span th:text="${landEntity.size}"></span></li>
+                                       <li><b>Description:</b></li>
+                                       <li><span th:text="${landEntity.description}"></span></li>
+                                    </ul>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                         
+                        <div class="col-sm-12 col-md-4">
+                           <div class="active_price table_price text_align_center">
+                              <div class="table_price_head">
+                                 <h5><i class="fa fa-info-circle"></i> Owner Details</h5>
+                              </div>
+                              <div class="table_price_cont">
+                                 <div class="table_price_cont_bottm text_align_left">
+                                    <ul>
+                                       <li><b>Full name:</b></li>
+                                       <li><span th:text="${landEntity.ownerEntity.firstname}"></span> <span th:text="${landEntity.ownerEntity.lastname}"></span></li>
+                                       <li><b>Phone:</b></li>
+                                       <li><span th:text="${landEntity.ownerEntity.phone}"></span></li>
+                                       <li><b>Email:</b></li>
+                                       <li><span th:text="${landEntity.ownerEntity.email}"></span></li>
+                                       <li><b>Registered Address:</b></li>
+                                       <li><span th:text="${landEntity.ownerEntity.address}"></span></li>
+                                       <li><b>State of Origin:</b></li>
+                                       <li><span th:text="${landEntity.ownerEntity.state}"></span></li>
+                                    </ul>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                           <div class="active_price_loan table_price text_align_center">
+                              <div class="table_price_head">
+                                 <h5><i class="fa fa-pause"></i> Loan Details</h5>
+                              </div>
+                              <div class="table_price_cont">
+                                 <div class="table_price_cont_bottm text_align_left">
+                                    <ul th:each="loans : ${landEntity.loanEntity}">
+                                       <li><b>Date:</b></li>
+                                       <li><span th:text="${loans.date}"></span></li>
+                                       <li><b>Pledged To:</b></li>
+                                       <li><span th:text="${loans.pledged_to}"></span></li>
+                                       <li><b>Duration:</b></li>
+                                       <li><span th:text="${loans.duration}"></span></li>
+                                    </ul>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        
+                        
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+<div class="col-md-12 col-lg-12">
+   <br/>
+                  <div class="right_bt_new"><button class="bt_main rev_bt" onclick="window.print()"><i class="fa fa-print"></i> Print</button> </div>
+                  <div class="right_bt_new"><a class="bt_main" href="index.html"><i class="fa fa-download"></i> Download</a> </div>
+                  <div class="right_bt_new"><a class="bt_main" href="index.html"><i class="fa fa-envelope"></i> Email</a> </div>
+               </div>
+
+         </div>
+      </section>
+                     
+                     <div th:replace="header :: myfooter"></div>
+                     
+      
+      
+      </body>
+      </html>
+      

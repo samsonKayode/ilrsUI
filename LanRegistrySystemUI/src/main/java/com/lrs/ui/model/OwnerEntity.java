@@ -83,4 +83,11 @@ public class OwnerEntity implements Serializable {
 		this.state = state;
 	}
 
+
+	@Override
+	public String toString() {
+		return "OwnerEntity [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", phone=" + phone
+				+ ", email=" + email + ", address=" + address + ", state=" + state + "]";
+	}
+
 }

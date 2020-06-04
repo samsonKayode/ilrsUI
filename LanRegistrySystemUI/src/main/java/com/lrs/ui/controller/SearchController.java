@@ -51,6 +51,12 @@ public class SearchController {
 		return "search/search-form";
 	}
 	
+	@RequestMapping(value="/search/result", method=RequestMethod.GET)
+	public String showResult(Model model) {
+		
+		return "search/search-result";
+	}
+	
 	@RequestMapping(value="/search/verify", method= RequestMethod.POST)
 	public String verifyData(@Valid @ModelAttribute("searchModel") SearchModel searchModel, 
 			BindingResult bindingResult, RedirectAttributes redirectAttributes) {
@@ -100,16 +106,21 @@ public class SearchController {
 				
 				// call get land details service...
 				
+				System.out.println("TITLE ID TO PROCESSS====>>>>>"+searchModel.getTitle_id());
+				
 				LandEntity landEntity = searchService.getLandDetails(searchModel.getTitle_id());
 				
 				
-				response_page ="redirect:/lrs/home";
+				System.out.println("LandEntity Location======>>>"+landEntity.getLocation());
+				
+				System.out.println("Owner Entity======>>>"+landEntity.getOwnerEntity().getAddress());
+				System.out.println("Loan Entity Size======>>>"+landEntity.getLoanEntity().size());
+				
+				redirectAttributes.addFlashAttribute("landEntity", landEntity);
+				
+				response_page ="redirect:/lrs/search/result";
 			}
-			
-			System.out.println("SEARCH MODEL MESSAGE ====>"+searchModel.getMessage());
-			System.out.println("SEARCH MODEL MESSAGE TEXT ====>"+searchModel.getMessageText());
-			
-			
+		
 		}
 		
 		return response_page;

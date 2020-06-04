@@ -79,11 +79,13 @@ public class SearchDAOImpl implements SearchDAO {
 		
 		LandEntity landEntity = null;
 		
+		HttpGet httpget=null;
+		
 		try {
 			
 			CloseableHttpClient httpclient = HttpClients.createDefault();
 		      
-		      HttpGet httpget = new HttpGet(baseURL + "/lrs/lands/data/list/"+title_id);
+		       httpget = new HttpGet(baseURL + "/lrs/lands/data/list/"+title_id);
 		      
 		      StringBuilder result = new StringBuilder();
 		      
@@ -100,8 +102,7 @@ public class SearchDAOImpl implements SearchDAO {
 	                
 	                ObjectMapper mapper = new ObjectMapper();
 
-	                landEntity = mapper.readValue(result.toString(), LandEntity.class); 
-	               
+	                landEntity = mapper.readValue(result.toString(), LandEntity.class);  
 		    	  
 		      }else {
 		    	  
@@ -114,6 +115,8 @@ public class SearchDAOImpl implements SearchDAO {
 		}catch(Exception nn) {
 			
 			System.out.println("ERROR COMPLETING REQUEST======>>>"+nn);
+			
+			System.out.println("URL REQUEST========>"+httpget.getURI());
 		}
 		
 		
