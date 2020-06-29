@@ -5,9 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.math.BigDecimal;
 
-/**
- * Created by SQ-OGBE PC on 22/09/2017.
- */
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public  class Data {

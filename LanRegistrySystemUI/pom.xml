@@ -10,6 +10,7 @@
 	</parent>
 	<groupId>com.rs</groupId>
 	<artifactId>lrsUI</artifactId>
+	<packaging>jar</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>LanRegistrySystemUI</name>
 	<description>Land Registry UI</description>
@@ -68,7 +69,7 @@
 	</dependencies>
 
 	<build>
-	<finalName>landRegistry</finalName>
+	<finalName>landRegistryUI</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

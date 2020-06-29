@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+	<div th:replace="header :: myheader"></div>
+   </head>
+   
+   <body id="default_theme" class="about">
+      <!-- header -->
+      <header class=" header_style1">
+         <div th:replace="header :: subheader"></div>
+      </header>
+      
+      <section class="layout_padding padding_top_0 center">
+         <div class="container">
+            <div class="row margin_bottom_30 center">
+               <!-- featured cont -->
+               <div class="col-sm-8 col-md-8 jumbotron alert-danger">
+                  <div class="full">
+                     <h2 style="text-align: center;">Error!!!</h2>
+
+                     <hr/>
+
+   <p style="text-align: center"> This is very strange, if you see this page then you should become a dev!</p>
+
+   <a  class="btn btn-danger col-12" th:href="@{/lrs/home}"><i class="fa fa-check-circle"></i> Return Home</a>
+   
+   </div>
+   </div>
+   </div>
+   </div>
+   </section>
+
+                     
+                     <div th:replace="header :: myfooter"></div>
+                     
+      
+      
+      </body>
+      </html>
+      
